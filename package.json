@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "alpinejs": "^3.10.2",
+    "parcel": "^2.5.0",
+    "postcss": "^8.4.13",
+    "tailwindcss": "^3.0.24"
+  }
+}

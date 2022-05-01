@@ -1,0 +1,1 @@
+{"mappings":"AACA,SAAS,SAAS,GAAG;IACnB,OAAO;QACL,QAAQ,EAAE,EAAE;KACb,CAAC;CACH","sources":["src/api.js"],"sourcesContent":["\nfunction articulos() {\n  return {\n    articles: []\n  };\n}\n"],"names":[],"version":3,"file":"index.75f6a523.js.map","sourceRoot":"/__parcel_source_root/"}

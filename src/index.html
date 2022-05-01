@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="index.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script type="module" src="app.js"></script>
+  </head>
+  <body
+    x-data="articulos()"
+    x-init="fetch(
+        'https://uhasyyvztklrrtsxmnyn.supabase.co/rest/v1/articulos',
+        {
+            headers:{
+                'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVoYXN5eXZ6dGtscnJ0c3htbnluIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTAzMDE4NTMsImV4cCI6MTk2NTg3Nzg1M30.XfReWlqUxWN2zdJpDVRPnHQV6n4mR7Ty2NKzgnB11Xc'
+              }
+        })
+    .then(response => response.json())
+    .then(response => {articles=response})"
+  >
+    <header class="shadow-sm">
+      <div class="max-w-screen-xl p-4 mx-auto">
+        <div class="flex items-center justify-between space-x-4 lg:space-x-10">
+          <nav class="space-x-8 text-normal font-medium md:flex sm:flex">
+            <a class="text-gray-500" href="">Inicio</a>
+            <a class="text-gray-500" href="#tutoriales">Tutoriales</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <div
+      x-data="{page: location.hash}"
+      @hashchange.window="page = location.hash"
+    >
+      <span x-show="page === ''">
+        <section class="relative bg-white">
+          <img
+            class="absolute inset-0 object-[75%] sm:object-[25%] object-cover w-full h-full opacity-25 sm:opacity-100"
+            src="https://cdn.pixabay.com/photo/2018/02/22/17/27/programming-3173456_960_720.png"
+            alt="Couple on a bed with a dog"
+          />
+
+          <div
+            class="hidden sm:block sm:inset-0 sm:absolute sm:bg-gradient-to-r sm:from-white sm:to-transparent"
+          ></div>
+
+          <div
+            class="relative max-w-screen-xl px-4 py-32 mx-auto lg:h-screen lg:items-center lg:flex"
+          >
+            <div class="max-w-xl text-center sm:text-left">
+              <h1 class="text-3xl font-extrabold sm:text-5xl">
+                ¡Hola!
+                <strong class="font-extrabold text-blue-500 sm:block">
+                  Bienvenido a mi página
+                </strong>
+              </h1>
+
+              <p class="max-w-lg mt-4 sm:leading-relaxed sm:text-xl">
+                En este espacio tratare de ayudar a las personas publicando cada
+                cierto tiempo tutoriales relacionados con la informática, asi
+                que siéntete libre de revisar cualquiera de ellos.
+              </p>
+            </div>
+          </div>
+        </section>
+      </span>
+      <span x-show="page === '#tutoriales'">
+        <div class="container mx-auto px-4">
+          <div
+            class="grid md:grid-cols-2 sm:grid-cols-1 justify-items-center p-9"
+          >
+            <template x-for="a in articles" :key="a.id">
+              <a href="" class="block overflow-hidden rounded-2xl m-5">
+                <img
+                  class="object-cover w-full h-56"
+                  x-bind:src="a.image"
+                  alt="No hay imagen :("
+                />
+                <div class="p-4 bg-gray-900">
+                  <p x-text="a.category" class="text-xs text-gray-500"></p>
+                  <h5 x-text="a.name" class="text-sm text-white"></h5>
+                  <p x-text="a.content" class="mt-1 text-xs text-gray-500"></p>
+                </div>
+              </a>
+            </template>
+          </div>
+        </div>
+      </span>
+    </div>
+    <script src="api.js"></script>
+  </body>
+</html>

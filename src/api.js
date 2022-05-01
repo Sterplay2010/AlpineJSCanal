@@ -1,0 +1,6 @@
+
+function articulos() {
+  return {
+    articles: []
+  };
+}
